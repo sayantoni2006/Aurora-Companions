@@ -1,0 +1,24 @@
+.btn-discord {
+    background: #3A0CA3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-discord:hover {
+    background: #560BAD;
+}
+
+.btn-discord i {
+    margin-right: 10px;
+}
+.read-more {
+    color: #F72585;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+}

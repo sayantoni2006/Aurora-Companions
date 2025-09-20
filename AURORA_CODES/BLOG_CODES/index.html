@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindSpace - Mental Health Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+    --primary: #3A0CA3;
+    --primary-light: #560BAD;
+    --secondary: #4361EE;
+    --secondary-light: #4CC9F0;
+    --accent: #F72585;
+    --accent-light: #B7094C;
+    --accent-lighter: #F72585;
+    --accent-lightest: #B7094C;
+    --dark: #1a1a1a;
+    --light: #f8f9fa;
+    --card-bg: rgba(255, 255, 255, 0.92);
+    --accent2: #4361EE;
+    --accent3: #4CC9F0;
+}
+
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: var(--dark);
+            color: #e2e8f0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+    background: var(--primary);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.4s ease;
+}
+
+        header.scrolled {
+            padding: 0.6rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode header {
+            background: rgba(0, 75, 35, 0.98);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+            transition: transform 0.5s ease;
+        }
+
+        .logo:hover i {
+            transform: rotate(15deg);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.8rem;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Add padding to body to account for fixed header */
+        body {
+            padding-top: 80px;
+        }
+
+        /* Hero Section */
+        .hero {
+    background: #3A0CA3 url('https://images.pexels.com/photos/1047540/pexels-photo-1047540.jpeg') no-repeat center center/cover;
+    color: white;
+    padding: 7rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(247, 37, 133, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(56, 176, 0, 0.4);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+
+        body.dark-mode .features {
+            background: var(--dark);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        body.dark-mode .section-title {
+            color: var(--accent-light);
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            border-top: 4px solid var(--accent);
+        }
+
+        body.dark-mode .feature-card {
+            background: rgba(26, 26, 26, 0.9);
+            color: #e2e8f0;
+        }
+
+        .feature-card:nth-child(2) {
+            border-top-color: var(--accent-light);
+        }
+
+        .feature-card:nth-child(3) {
+            border-top-color: var(--accent-lighter);
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            transition: transform 0.5s ease;
+        }
+
+        .feature-card:hover i {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1.2rem;
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+
+        body.dark-mode .feature-card h3 {
+            color: var(--accent-light);
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        body.dark-mode .feature-card p {
+            color: #cbd5e0;
+        }
+
+        /* Blog Section */
+        .blog {
+            padding: 5rem 0;
+            background: linear-gradient(to bottom, var(--light), #e8f5e8);
+        }
+
+        body.dark-mode .blog {
+            background: linear-gradient(to bottom, var(--dark), #0d1f0d);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .blog-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        body.dark-mode .blog-card {
+            background: rgba(26, 26, 26, 0.9);
+            color: #e2e8f0;
+        }
+
+        .blog-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .blog-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .blog-card:hover .blog-img img {
+            transform: scale(1.15);
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-content h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: 1.3rem;
+            line-height: 1.4;
+        }
+
+        body.dark-mode .blog-content h3 {
+            color: var(--accent-light);
+        }
+
+        .blog-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        body.dark-mode .blog-content p {
+            color: #cbd5e0;
+        }
+
+        .read-more {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .read-more::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            transition: width 0.3s ease;
+        }
+
+        .read-more:hover::after {
+            width: 100%;
+        }
+
+        .read-more i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--accent-light);
+        }
+
+        .read-more:hover i {
+            transform: translateX(8px);
+        }
+
+        /* Resources Section */
+        #resources-section {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+
+        body.dark-mode #resources-section {
+            background: var(--dark);
+        }
+
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            margin-bottom: 1.2rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .accordion-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .accordion-header {
+    background: var(--accent);
+    color: white;
+    padding: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+        .accordion-header:hover {
+            background: linear-gradient(to right, var(--accent-light), var(--accent));
+        }
+
+        .accordion-content {
+            background: var(--light);
+            padding: 0;
+            max-height: 500px;
+        }
+
+        /* Footer */
+        footer {
+    background: var(--primary);
+    color: white;
+    padding: 4rem 0 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--accent2), var(--accent3));
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .footer-section p {
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-section ul li:hover {
+            transform: translateX(5px);
+        }
+
+        .footer-section ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.5s;
+            display: block;
+        }
+
+        .footer-section ul li:hover {
+    color: var(--accent);
+}
+
+        .social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    text-decoration: none;
+}
+
+        .social-icons a {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-decoration: none !important;
+}
+
+        .social-icons a:hover {
+    background: var(--accent);
+    transform: translateY(-5px) rotate(5deg);
+    text-decoration: none !important;
+}
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        /* Discord Button in Footer */
+        .discord-btn {
+            display: inline-flex;
+            align-items: center;
+            background: var(--accent2);
+            color: white;
+            padding: 1rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(238, 150, 75, 0.3);
+        }
+
+        .discord-btn:hover {
+            background: var(--accent3);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(238, 150, 75, 0.4);
+        }
+
+        .discord-btn i {
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .discord-btn:hover i {
+            transform: rotate(10deg);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Scroll progress indicator */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1001;
+        }
+
+        .progress-bar {
+    height: 4px;
+    background: var(--accent);
+    width: 0%;
+    transition: width 0.2s ease;
+}
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1.2rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 0 0.8rem 0.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .feature-card, .blog-card {
+                margin-bottom: 1.5rem;
+            }
+            
+            body {
+                padding-top: 100px;
+            }
+        }
+
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    transition: all 0.3s ease;
+}
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.1) rotate(30deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Indicator -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-brain"></i>
+                    <span>AURORA WORLD</span>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#resources-section">Resources</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Let's Live The Life Together</h1>
+                <p>A open space to learn new techniques and spend days happily</p>
+                <a href="#blog" class="btn">Explore Articles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Aurora World</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Supportive Community</h3>
+                    <p>Connect with others who understand your journey and share experiences in a safe, moderated environment.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Expert Resources</h3>
+                    <p>Access articles and wellness toolkit to guide yourself in your journey.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>Safe & Confidential</h3>
+                    <p>Your privacy is our priority. Share what you feel to our Aurora Companions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog" id="blog">
+        <div class="container">
+            <h2 class="section-title">Latest Articles</h2>
+            <div class="blog-grid">
+                <!-- In your blog section, replace the current read more links with these: -->
+                <div class="blog-card">
+                  <div class="blog-img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-QrCWas18xfhWTs8Q5TSDjF1w2_CwYotBOw&s" alt="Meditation">
+    </div>
+    <div class="blog-content">
+        <h3>(WHO) - Fact Sheet on Mental Health</h3>
+        <p>The WHO states that mental health is an integral part of health and well-being for all people. </p>
+        <a href="https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response" target="_blank" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+
+<div class="blog-card">
+    <div class="blog-img">
+        <img src="https://platform.vox.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/10287867/ANTIDEPRESSANTS_BIG_IDEA__1_.jpg?quality=90&strip=all&crop=5%2C0%2C90%2C100&w=750" alt="Mindfulness">
+    </div>
+    <div class="blog-content">
+        <h3>Article Focus: The Flawed "Chemical Imbalance" Theory</h3>
+        <p>This article breaks down the science (or lack thereof) behind the famous "chemical imbalance" explanation for depression.</p>
+        <a href="https://www.vox.com/the-big-idea/2018/2/25/16997572/causes-depression-pills-prozac-social-environmental-connections-hari" target="_blank" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+
+<div class="blog-card">
+    <div class="blog-img">
+        <img src="https://pagesix.com/wp-content/uploads/sites/3/2017/09/jim-carrey.jpg?quality=75&strip=all&w=744" alt="Mindfulness">
+    </div>
+    <div class="blog-content">
+        <h3>"Jim Carrey depression and fame"</h3>
+        <p>Jim Carrey has said things like, "I think everybody should get rich and famous and do everything they ever dreamed of so they can see that it's not the answer."</p>
+        <a href="https://www.ourmental.health/stars-struggles/jim-carrey-the-hidden-struggle-behind-the-comedians-smile" target="_blank" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+
+<div class="blog-card">
+    <div class="blog-img">
+        <img src="https://people.com/thmb/jqDCNpwKlacOuz4qL9HWWa_cB_k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(952x202:954x204)/katy-perry-american-idol-main-030725-33b807385d7a46299638813cc9b8f4cc.jpg" alt="Mindfulness">
+    </div>
+    <div class="blog-content">
+        <h3>"Katy Perry on depression and therapy"</h3>
+        <p>After a highly publicized divorce and the intense pressure of fame, Katy Perry experienced a period of severe depression.</p>
+        <a href="https://www.vogue.in/fashion/content/katy-perry-exclusive-fighting-depression-meditation-and-using-her-platform-to-steer-change-vogue-india-january-2020" target="_blank" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+
+<div class="blog-card">
+    <div class="blog-img">
+        <img src="https://champions-speakers.co.uk/sites/default/files/2021-03/jonny_benjamin_and_neil_laybourn_ads_.jpg" alt="Mindfulness">
+    </div>
+    <div class="blog-content">
+        <h3>"Jonny Benjamin from suicide attempt to mental health campaigner"</h3>
+        <p>Jonny Benjamin was diagnosed with schizoaffective disorder and once attempted to take his own life. He was talked down from a bridge by a stranger.</p>
+        <a href="https://www.bbc.com/news/newsbeat-38477747" target="_blank" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+
+<div class="blog-card">
+    <div class="blog-img">
+        <img src="https://torontolife.mblycdn.com/tl/resized/2025/09/w1280/GettyImages-2233858599.jpg" alt="Sleep">
+    </div>
+    <div class="blog-content">
+        <h3>"The Rock depression success story"</h3>
+        <p>Dwayne Johnson has been very open about his battles with depression at various points in his life,He speaks about using that pain as fuel to build his work ethic and empire in wrestling and Hollywood.</p>
+        <a href="https://ppimhs.org/newspost/depression-didnt-keep-these-stars-from-success/" target="_blank" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindSpace - Mental Health Resources</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Previous CSS styles remain the same until the Resources section */
+        
+        /* YouTube-Style Resources Section */
+        #resources-section {
+            padding: 5rem 0;
+            background: var(--secondary);
+            min-height: 100vh;
+        }
+
+        body.dark-mode #resources-section {
+    background: #2d3748;
+        }
+
+        .youtube-layout {
+            display: flex;
+            gap: 20px;
+            margin-top: 2rem;
+        }
+
+        .sidebar {
+            width: 240px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        body.dark-mode .sidebar {
+            background: rgba(45, 55, 72, 0.9);
+        }
+
+        .sidebar-category {
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .sidebar-category:hover {
+            background: rgba(13, 59, 102, 0.1);
+        }
+
+        body.dark-mode .sidebar-category:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-category.active {
+            background: rgba(13, 59, 102, 0.15);
+            font-weight: 600;
+        }
+
+        body.dark-mode .sidebar-category.active {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .sidebar-category i {
+            margin-right: 15px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .content-area {
+            flex: 1;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        body.dark-mode .content-area {
+            background: rgba(45, 55, 72, 0.9);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(13, 59, 102, 0.1);
+        }
+
+        body.dark-mode .category-header {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            background: linear-gradient(to right, var(--accent2), var(--accent3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark-mode .resource-card {
+            background: rgba(35, 45, 60, 0.7);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-thumbnail {
+            height: 160px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .resource-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .resource-card:hover .resource-thumbnail img {
+            transform: scale(1.1);
+        }
+
+        .resource-content {
+            padding: 1.2rem;
+        }
+
+        .resource-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        body.dark-mode .resource-title {
+            color: var(--secondary);
+        }
+
+        .resource-channel {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        body.dark-mode .resource-channel {
+            color: #cbd5e0;
+        }
+
+        .resource-link {
+            display: inline-block;
+            color: var(--accent2);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .resource-link:hover {
+            color: var(--accent3);
+        }
+
+        .category-content {
+            display: none;
+        }
+
+        .category-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            .youtube-layout {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                position: static;
+                margin-bottom: 1.5rem;
+            }
+            
+            .sidebar-categories {
+                display: flex;
+                overflow-x: auto;
+                gap: 10px;
+                padding-bottom: 10px;
+            }
+            
+            .sidebar-category {
+                white-space: nowrap;
+                margin-bottom: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-area {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Previous HTML content remains the same until the Resources section -->
+    
+    <!-- Resources Section - YouTube Style -->
+    <section id="resources-section">
+        <div class="container">
+            
+            
+            <div class="youtube-layout">
+                <!-- Sidebar with categories -->
+                <div class="sidebar">
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active" data-category="meditation">
+                            <i class="fas fa-spa"></i>
+                            <span>Meditation</span>
+                        </div>
+                        <div class="sidebar-category" data-category="skincare">
+                            <i class="fas fa-soap"></i>
+                            <span>Skincare</span>
+                        </div>
+                        <div class="sidebar-category" data-category="cook">
+                            <i class="fas fa-utensils"></i>
+                            <span>Cook</span>
+                        </div>
+                        <div class="sidebar-category" data-category="books">
+                            <i class="fas fa-book"></i>
+                            <span>Hobbies</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content area -->
+                <div class="content-area">
+                    <!-- Meditation Content -->
+                    <div class="category-content active" id="meditation-content">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-spa"></i>
+                            </div>
+                            <h3>Meditation & Mindfulness</h3>
+                        </div>
+                        
+                        <div class="resource-grid">
+                            <div class="resource-card">
+                                <div class="resource-thumbnail">
+                                    <img src="https://t4.ftcdn.net/jpg/05/67/84/45/360_F_567844524_rdx37gxOXtYnJPk383WaaVXf6MhxVILQ.jpg" alt="Guided Meditation">
+                                </div>
+                                <div class="resource-content">
+                                    <h4 class="resource-title">Concentration</h4>
+                                    <p class="resource-channel">Vedam</p>
+                                    <a href="https://youtu.be/2hrC3Fwm9d4?si=YaUvzVV8t6tfa0rL" target="_blank" class="resource-link">Watch on YouTube</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-thumbnail">
+                                    <img src="https://i.ytimg.com/vi/uDm_Tt6C2wA/maxresdefault.jpg" alt="Breathing Exercise">
+                                </div>
+                                <div class="resource-content">
+                                    <h4 class="resource-title">Energy Hub</h4>
+                                    <p class="resource-channel">Agam</p>
+                                    <a href="https://youtu.be/alGDiDWjk_k?si=tGZyVX8fbFlKXHQo" target="_blank" class="resource-link">Watch on YouTube</a>
+                                </div>
+                            </div>
+
+                              <div class="resource-card">
+                                <div class="resource-thumbnail">
+                                    <img src="https://i1.sndcdn.com/artworks-skWYE0KgGzyaf5PK-qf8Dvg-t500x500.jpg" alt="Breathing Exercise">
+                                </div>
+                                <div class="resource-content">
+                                    <h4 class="resource-title">Mystical Serenity</h4>
+                                    <p class="resource-channel">Deep Calm Melodies</p>
+                                    <a href="https://youtu.be/pRtVNjv0NWs?si=vGBvyJVp0VvxrlvN" target="_blank" class="resource-link">Watch on YouTube</a>
+                                </div>
+                            </div>
+<div class="resource-card">
+                                <div class="resource-thumbnail">
+                                    <img src="https://as1.ftcdn.net/v2/jpg/15/80/25/96/1000_F_1580259629_yZ4A0u0ZdACUSUbyvWdXQgRd6DcaqK3p.jpg" alt="Mindfulness">
+                                </div>
+                                <div class="resource-content">
+                                    <h4 class="resource-title">Realization in peace</h4>
+                                    <p class="resource-channel">Good Vibe</p>
+                                    <a href="https://youtu.be/tshj_Sx0j5g?si=WeOAt0LMVquQckEK" target="_blank" class="resource-link">Watch on YouTube</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Skincare Content -->
+                    <div class="category-content" id="skincare-content">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-soap"></i>
+                            </div>
+                            <h3>Skincare & Self-Care</h3>
+                        </div>
+                        
+                        <div class="resource-grid">
+                            <div class="resource-card">
+                                <div class="resource-thumbnail">
+                                    <img src="https://img.forestessentialsindia.com/blog/wp-content/uploads/2021/12/1-1.jpg" alt="Skincare Routine">
+                                </div>
+                                <div class="resource-content">
+                                    <h4 class="resource-title">3 Simple Ingredient, with glowing skin</h4>
+                                    <p class="resource-channel">Shefalirawat</p>
+                                    <a href="https://youtube.com/shorts/pe1gCkZW96o?si=6ukPlVhGUU-ktQab" target="_blank" class="resource-link">Watch on YouTube</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-thumbnail">
+                                    <img src="https://www.reead.com/en/wp-content/uploads/2020/09/Korean-Skincare-Techniques-for-Men.jpg" alt="Self Care">
+                                </div>
+                                <div class="resource-content">
+                                    <h4 class="resource-title">3 Simple Ingredient, with tan-free skin</h4>
+                                    <p class="resource-channel">Hustle_with_Harman</p>
+                                    <a href="https://youtube.com/shorts/vIQbr59DYIc?si=WEorDa-TrSBNVM1E" target="_blank" class="resource-link">Watch on YouTube</a>
+
+                                </div>
+                            </div>
+
+                              <div class="resource-card">
+                                <div class="resource-thumbnail">
+                                    <img src="https://www.thepinkfoundry.com/cdn/shop/articles/Morning_Skincare_Routine-_Five_Simple_Steps_You_Must_Follow_1.png?v=1745412296&width=2048" alt="Self Care">
+                                </div>
+                                <div class="resource-content">
+                                    <h4 class="resource-title">Fresh Morning</h4>
+                                    <p class="resource-channel">sneha_lifestyle16</p>
+                                    <a href="https://youtube.com/shorts/hMovoU6_i_w?si=qlsdXPa8HutZjk1Y" target="_blank" class="resource-link">Watch on YouTube</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-thumbnail">
+                                    <img src="https://cdn.shopify.com/s/files/1/0130/2514/8987/files/211018_HowToLayerPM_1024x1024.jpg?v=1634590501" alt="Face Massage">
+                                </div>
+                                <div class="resource-content">
+                                    <h4 class="resource-title">Nighttime Renewal</h4>
+                                    <p class="resource-channel">aarti_phadan9852</p>
+                                    <a href="https://youtube.com/shorts/WSszeF9SUy4?si=TbMbezm2ou4aHgxc" target="_blank" class="resource-link">Watch on YouTube</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cook Content -->
+                    <div class="category-content" id="cook-content">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h3>Chef mode: ON</h3>
+                        </div>
+                        
+                        <div class="resource-grid">
+                            <div class="resource-card">
+                                <div class="resource-thumbnail">
+                                    <img src="https://preview.redd.it/homemade-went-overboard-and-made-spinach-rice-and-creamy-v0-jh3zm8mezrwc1.jpg?width=640&crop=smart&auto=webp&s=41a69e318b4ebb5f29931690fc8c9a01ad2b286b" alt="Comfort Food">
+                                </div>
+                                <div class="resource-content">
+                                    <h4 class="resource-title">Creaminess with sweet & tangy</h4>
+                                    <p class="resource-channel">Pots and Pans India</p>
+                                    <a href="https://youtu.be/70YNQMeWx1o?si=-fQN1TgBdzWnVOfp" target="_blank" class="resource-link">Watch on YouTube</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-thumbnail">
+                                    <img src="https://eveganrecipes.com/wp-content/uploads/2023/12/2-Ingredient-chocolate-mousse-2.jpg" alt="Meal Prep">
+                                </div>
+                                <div class="resource-content">
+                                    <h4 class="resource-title">Something Sweet</h4>
+                                    <p class="resource-channel">Bake with Shivesh</p>
+                                    <a href="https://youtu.be/ZrtcYG8K2mU?si=5E_FUBEhWnT5fSkn" target="_blank" class="resource-link">Watch on YouTube</a>
+                                </div>
+                            </div>
+                            
+                             <div class="resource-card">
+                                <div class="resource-thumbnail">
+                                    <img src="https://insidermama.com/wp-content/uploads/2024/12/primary-layered-mango-float.jpg" alt="Meal Prep">
+                                </div>
+                                <div class="resource-content">
+                                    <h4 class="resource-title">The Mango Mob</h4>
+                                    <p class="resource-channel">Sneha Singhi</p>
+                                    <a href="https://youtu.be/ImzQnDr6Fho?si=rRefmpXQA87i6K-b" target="_blank" class="resource-link">Watch on YouTube</a>
+                                </div>
+                            </div>
+
+                            <div class="resource-card">
+                                <div class="resource-thumbnail">
+                                    <img src="https://i.ytimg.com/vi/YX0y5vsfpUk/oardefault.jpg?sqp=-oaymwEYCJUDENAFSFqQAgHyq4qpAwcIARUAAIhC&rs=AOn4CLBOZ2Da78qM4AZInTC6BUq2vJn7GQ" alt="Mindful Eating">
+                                </div>
+                                <div class="resource-content">
+                                    <h4 class="resource-title">The Potato Fan Club</h4>
+                                    <p class="resource-channel">Saransh Goila</p>
+                                    <a href="https://youtu.be/YX0y5vsfpUk?si=tOrfKHs6Rr3BVLYT" target="_blank" class="resource-link">Watch on YouTube</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Books Content -->
+                    <div class="category-content" id="books-content">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3>New hobby New me</h3>
+                        </div>
+                        
+                        <div class="resource-grid">
+                            <div class="resource-card">
+                                <div class="resource-thumbnail">
+                                    <img src="https://thepapery.co.za/cdn/shop/articles/the_basics_of_journaling_blog_cover_1200x600_20mgpixel_1200x.jpg?v=1665480706" alt="Book Recommendation">
+                                </div>
+                                <div class="resource-content">
+                                    <h4 class="resource-title">Making To Do List</h4>
+                                    <p class="resource-channel">Georgia_Pontin</p>
+                                    <a href="https://youtube.com/shorts/amuVBQdmda8?si=yE-wKaPG8QTqmiiw" target="_blank" class="resource-link">Watch on YouTube</a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-thumbnail">
+                                    <img src="https://5.imimg.com/data5/SELLER/Default/2024/1/380463730/KF/SB/XH/53538062/stone-painting.png" alt="Audiobook">
+                                </div>
+                                <div class="resource-content">
+                                    <h4 class="resource-title">Stone Art</h4>
+                                    <p class="resource-channel">Crafter Akshu</p>
+                                    <a href="https://youtube.com/shorts/11XMJAYiOOE?si=URe6uyFK6lWf0abt" target="_blank" class="resource-link">Watch on YouTube</a>
+                                </div>
+                            </div>
+                           
+                            <div class="resource-card">
+                                <div class="resource-thumbnail">
+                                    <img src="https://www.shutterstock.com/image-illustration/cherry-painting-green-leaf-impasto-600nw-2627862117.jpg" alt="Audiobook">
+                                </div>
+                                <div class="resource-content">
+                                    <h4 class="resource-title">Texture Art</h4>
+                                    <p class="resource-channel">SharmisCreation</p>
+                                    <a href="https://youtube.com/shorts/U0YKlxXVXZ8?si=XKFYijMa1lTOZAAq" target="_blank" class="resource-link">Watch on YouTube</a>
+                                </div>
+                            </div>
+
+                            <div class="resource-card">
+                                <div class="resource-thumbnail">
+                                    <img src="https://miro.medium.com/1*wJV7MTFvCFqhVPiqhnYlzA.jpeg" alt="Book Review">
+                                </div>
+                                <div class="resource-content">
+                                    <h4 class="resource-title">Self-Improvement Books</h4>
+                                    <p class="resource-channel">booksforsapiens</p>
+                                    <a href="https://youtube.com/shorts/VMjhvmV599g?si=ojTavZNBuvIjKpjK" target="_blank" class="resource-link">Watch on YouTube</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer section remains the same -->
+    
+    <script>
+        // Category switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const categories = document.querySelectorAll('.sidebar-category');
+            const categoryContents = document.querySelectorAll('.category-content');
+            
+            categories.forEach(category => {
+                category.addEventListener('click', function() {
+                    const categoryId = this.getAttribute('data-category');
+                    
+                    // Remove active class from all categories and contents
+                    categories.forEach(cat => cat.classList.remove('active'));
+                    categoryContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked category and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(`${categoryId}-content`).classList.add('active');
+                });
+            });
+        });
+        
+        // The rest of your JavaScript remains the same
+    </script>
+</body>
+</html>
+
+    <!-- Footer -->
+<footer id="contact">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Aurora World</h3>
+                <p>Aurora World is a sanctuary for emotional wellness, We believe in empowering individuals through knowledge, connection, and self-care practices.</p>
+                <!-- Updated Discord button with link -->
+                <a href="https://discord.gg/ZxSypK9t" target="_blank" class="discord-btn">
+                    <i class="fab fa-discord"></i> Join Our Discord
+                </a>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#resources-section">Resources</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <p>Follow us on social media for daily self care tips and updates.</p>
+                <div class="social-icons">
+                    
+                    <a href="https://www.instagram.com/aurora_companions/" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                 
+                    <a href="https://discord.gg/ZxSypK9t" target="_blank">
+                        <i class="fab fa-discord"></i>
+                </div>
+            </div>     
+       </div>
+</footer>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
